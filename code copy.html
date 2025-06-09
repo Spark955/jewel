@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oberon Jewels - Certified Lab-Grown Diamond Jewelry</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+
+    <style>
+        /* --- Base Setup & Variables --- */
+        :root {
+            --primary-color: #3b4f6b; /* Deep blue-gray from brochure */
+            --secondary-color: #a7c4c0; /* Soft teal from brochure */
+            --gold-accent: #d4af37; /* Gold accent from live site */
+            --text-color: #333;
+            --light-gray: #f7f9f9;
+            --white-color: #ffffff;
+            --font-heading: 'Cormorant Garamond', serif;
+            --font-body: 'Lato', sans-serif;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: var(--font-body);
+            color: var(--text-color);
+            background-color: var(--white-color);
+            line-height: 1.6;
+        }
+        .container { max-width: 1280px; margin: 0 auto; padding: 0 20px; }
+        h1, h2, h3, h4 { font-family: var(--font-heading); font-weight: 600; color: var(--primary-color); }
+        a { text-decoration: none; color: var(--primary-color); transition: color 0.3s ease; }
+        a:hover { color: var(--secondary-color); }
+        section { padding: 80px 0; }
+        .section-title { font-size: 2.8em; text-align: center; margin-bottom: 60px; }
+        .cta-button {
+            background: var(--primary-color);
+            color: var(--white-color);
+            padding: 15px 35px;
+            font-size: 1em;
+            font-weight: 700;
+            text-transform: uppercase;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+        .cta-button:hover { background: var(--secondary-color); }
+
+        /* --- Trust Banner --- */
+        .top-banner { background: var(--light-gray); text-align: center; padding: 10px; font-size: 0.9em; font-weight: 700; }
+
+        /* --- Header --- */
+        .main-header { background: var(--white-color); border-bottom: 1px solid #eee; padding: 15px 0; position: sticky; top: 0; z-index: 100; }
+        .main-header .container { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-family: var(--font-heading); font-size: 1.8em; font-weight: 700; letter-spacing: 2px; }
+        .main-nav ul { list-style: none; display: flex; gap: 30px; }
+        .main-nav a { font-size: 1em; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
+        .header-icons { display: flex; gap: 20px; font-size: 1.2em; }
+
+        /* --- Hero Section --- */
+        .hero {
+            background: url('https://i.imgur.com/k6C0r0A.jpeg') no-repeat center center/cover;
+            height: 85vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white-color);
+            padding: 0;
+        }
+        .hero-content { background: rgba(0, 0, 0, 0.3); padding: 40px 60px; border-radius: 5px; }
+        .hero h1 { font-size: 3.5em; color: var(--white-color); margin-bottom: 10px; }
+        .hero p { font-size: 1.5em; font-weight: 300; margin-bottom: 30px; }
+
+        /* --- Featured Categories --- */
+        .featured-categories { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; }
+        .category-card { position: relative; overflow: hidden; cursor: pointer; border-radius: 5px; }
+        .category-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+        .category-card:hover img { transform: scale(1.05); }
+        .category-info {
+            position: absolute; bottom: 0; left: 0; right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+            padding: 40px 20px 20px; text-align: center;
+        }
+        .category-info h3 { font-size: 1.8em; color: var(--white-color); }
+        
+        /* --- The Oberon Promise Section --- */
+        .promise-section { background-color: var(--light-gray); }
+        .promise-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; text-align: center; }
+        .promise-item i { font-size: 2.5em; color: var(--secondary-color); margin-bottom: 20px; }
+        .promise-item h3 { font-size: 1.5em; margin-bottom: 10px; }
+
+        /* --- Bestsellers Section --- */
+        .product-card { text-align: center; }
+        .product-card img { width: 100%; margin-bottom: 15px; background-color: #fdfdfd; border-radius: 5px; border: 1px solid #f0f0f0; }
+        .product-card h4 { font-size: 1.2em; }
+        .product-card p { color: #777; font-size: 0.9em; }
+        .price { font-weight: 700; font-size: 1.1em; margin-top: 5px; }
+
+        /* --- Our Story Section --- */
+        .our-story { background-color: var(--white-color); }
+        .our-story .container { display: flex; align-items: center; gap: 60px; }
+        .story-image { flex: 1; }
+        .story-image img { width: 100%; border-radius: 5px; }
+        .story-content { flex: 1; }
+        .story-content h2 { font-size: 2.8em; margin-bottom: 20px; text-align: left; }
+        .story-content p { margin-bottom: 30px; font-size: 1.1em; }
+
+        /* --- Social Proof (Instagram) --- */
+        .instagram-feed { background-color: var(--light-gray); }
+        .instagram-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 15px; }
+        .insta-post { position: relative; overflow: hidden; aspect-ratio: 1 / 1; }
+        .insta-post img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s; }
+        .insta-post:hover img { transform: scale(1.1); }
+        .insta-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s; }
+        .insta-post:hover .insta-overlay { opacity: 1; }
+        .insta-overlay i { color: white; font-size: 2em; }
+
+        /* --- Footer --- */
+        .main-footer { background-color: var(--primary-color); color: var(--white-color); padding: 60px 0 20px; }
+        .footer-content { display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; margin-bottom: 40px; }
+        .footer-column h4 { font-size: 1.2em; color: var(--white-color); margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px; }
+        .footer-column ul { list-style: none; }
+        .footer-column li { margin-bottom: 10px; }
+        .footer-column a, .footer-column p { color: #ccc; }
+        .footer-column a:hover { color: var(--white-color); }
+        .newsletter-form { display: flex; margin-top: 10px; }
+        .newsletter-form input { flex-grow: 1; padding: 10px; border: 1px solid #ccc; border-radius: 3px 0 0 3px; }
+        .newsletter-form button { padding: 10px 20px; background-color: var(--secondary-color); color: var(--white-color); border: none; cursor: pointer; border-radius: 0 3px 3px 0; }
+        .footer-bottom { border-top: 1px solid #5a6f8a; padding-top: 20px; display: flex; justify-content: space-between; align-items: center; }
+        .social-icons a { color: var(--white-color); font-size: 1.2em; margin-right: 15px; }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 992px) {
+            .main-nav { display: none; }
+            .our-story .container, .footer-bottom { flex-direction: column; }
+            .our-story .container { gap: 30px; }
+            .story-content h2 { text-align: center; }
+            .story-content { text-align: center; }
+            .instagram-grid { grid-template-columns: repeat(3, 1fr); }
+            .footer-content { grid-template-columns: 1fr 1fr; gap: 30px; }
+        }
+        @media (max-width: 768px) {
+            .section-title { font-size: 2.2em; margin-bottom: 40px; }
+            .hero h1 { font-size: 2.5em; }
+            .hero p { font-size: 1.2em; }
+            .promise-grid { grid-template-columns: 1fr; }
+            .footer-content { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="top-banner">
+        FREE INSURED SHIPPING | IGI/GIA CERTIFIED | LIFETIME WARRANTY | EASY RETURNS
+    </div>
+
+    <header class="main-header">
+        <div class="container">
+            <a href="#" class="logo">OBERON JEWELS</a>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#">Shop</a></li>
+                    <li><a href="#">Rings</a></li>
+                    <li><a href="#">Bracelets</a></li>
+                    <li><a href="#">Earrings</a></li>
+                    <li><a href="#">Our Story</a></li>
+                </ul>
+            </nav>
+            <div class="header-icons">
+                <a href="#"><i class="fa-solid fa-magnifying-glass"></i></a>
+                <a href="#"><i class="fa-solid fa-user"></i></a>
+                <a href="#"><i class="fa-solid fa-cart-shopping"></i></a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Exquisite Lab Diamond Jewelry</h1>
+                <p>Crafted for Brilliance, Consciously Sourced.</p>
+                <a href="#" class="cta-button">Shop New Arrivals</a>
+            </div>
+        </section>
+
+        <section class="container">
+            <h2 class="section-title">Shop By Category</h2>
+            <div class="featured-categories">
+                <a href="#" class="category-card">
+                    <img src="https://i.imgur.com/e5pQc9G.png" alt="Elegant diamond rings">
+                    <div class="category-info"><h3>Rings</h3></div>
+                </a>
+                <a href="#" class="category-card">
+                    <img src="https://i.imgur.com/xQvT23K.png" alt="Stunning diamond earrings">
+                    <div class="category-info"><h3>Earrings</h3></div>
+                </a>
+                <a href="#" class="category-card">
+                    <img src="https://i.imgur.com/D43y9q6.png" alt="Exquisite diamond bracelets">
+                    <div class="category-info"><h3>Bracelets</h3></div>
+                </a>
+                 <a href="#" class="category-card">
+                    <img src="https://i.imgur.com/c4h5N5c.png" alt="Delicate diamond necklaces">
+                    <div class="category-info"><h3>Necklaces</h3></div>
+                </a>
+            </div>
+        </section>
+        
+        <section class="promise-section">
+            <div class="container">
+                <h2 class="section-title">The Oberon Promise</h2>
+                <div class="promise-grid">
+                    <div class="promise-item">
+                        <i class="fa-solid fa-gem"></i>
+                        <h3>Certified & Guaranteed</h3>
+                        <p>Every piece comes with IGI/GIA certification, ensuring the highest quality and authenticity of your lab-grown diamond.</p>
+                    </div>
+                    <div class="promise-item">
+                        <i class="fa-solid fa-shield-halved"></i>
+                        <h3>Lifetime Warranty</h3>
+                        <p>We stand by our craftsmanship. Enjoy a lifetime warranty that covers any manufacturing defects.</p>
+                    </div>
+                    <div class="promise-item">
+                        <i class="fa-solid fa-leaf"></i>
+                        <h3>Sustainable & Ethical</h3>
+                        <p>Adorn yourself with beauty that's kind to the planet. Our diamonds are ethically sourced and environmentally conscious.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="container">
+            <h2 class="section-title">Shop Our Bestsellers</h2>
+            <div class="promise-grid"> <!-- Re-using the responsive grid -->
+                <div class="product-card">
+                    <img src="https://i.imgur.com/hO90yR6.png" alt="The 'Ethereal' Ring">
+                    <h4>The 'Ethereal' Cluster Ring</h4>
+                    <p>OR0200 - 0.94CTW</p>
+                    <span class="price">$2,850</span>
+                </div>
+                <div class="product-card">
+                    <img src="https://i.imgur.com/vHq4R7F.png" alt="Diamond Cluster Tennis Bracelet">
+                    <h4>Classic Tennis Bracelet</h4>
+                    <p>OB0015 - 8.37CTW</p>
+                    <span class="price">$9,500</span>
+                </div>
+                <div class="product-card">
+                    <img src="https://i.imgur.com/o1F8p8U.png" alt="Halo Engagement Ring">
+                    <h4>Pear Halo Engagement Ring</h4>
+                    <p>OR0052 - 0.80CTW</p>
+                    <span class="price">$2,100</span>
+                </div>
+                 <div class="product-card">
+                    <img src="https://i.imgur.com/sT9e32E.png" alt="Fancy Shape Tennis Bracelet">
+                    <h4>Multi-Shape Tennis Bracelet</h4>
+                    <p>OB0024 - 11.50CTW</p>
+                    <span class="price">$12,800</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="our-story">
+            <div class="container">
+                <div class="story-image">
+                    <img src="https://i.imgur.com/MvYv4k9.png" alt="Artisan crafting a diamond ring">
+                </div>
+                <div class="story-content">
+                    <h2>Innovation Meets Elegance</h2>
+                    <p>At Oberon Jewels, we are revolutionizing the industry with cutting-edge technology and ethical practices. Our diamonds are cultivated with the utmost precision, mirroring the natural process to create gems of unparalleled quality and brilliance, without the environmental impact.</p>
+                    <a href="#" class="cta-button">Read Our Story</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="instagram-feed">
+            <div class="container">
+                <h2 class="section-title">Adorned By You</h2>
+                <div class="instagram-grid">
+                    <a href="#" class="insta-post"><img src="https://i.imgur.com/e5pQc9G.png" alt="Instagram post 1"><div class="insta-overlay"><i class="fab fa-instagram"></i></div></a>
+                    <a href="#" class="insta-post"><img src="https://i.imgur.com/xQvT23K.png" alt="Instagram post 2"><div class="insta-overlay"><i class="fab fa-instagram"></i></div></a>
+                    <a href="#" class="insta-post"><img src="https://i.imgur.com/YwP5y8f.png" alt="Instagram post 3"><div class="insta-overlay"><i class="fab fa-instagram"></i></div></a>
+                    <a href="#" class="insta-post"><img src="https://i.imgur.com/c4h5N5c.png" alt="Instagram post 4"><div class="insta-overlay"><i class="fab fa-instagram"></i></div></a>
+                    <a href="#" class="insta-post"><img src="https://i.imgur.com/D43y9q6.png" alt="Instagram post 5"><div class="insta-overlay"><i class="fab fa-instagram"></i></div></a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h4>Customer Care</h4>
+                    <ul>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Shipping & Returns</a></li>
+                        <li><a href="#">Lifetime Warranty</a></li>
+                        <li><a href="#">Book an Appointment</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Our Company</h4>
+                    <ul>
+                        <li><a href="#">Our Story</a></li>
+                        <li><a href="#">Why Lab-Grown</a></li>
+                        <li><a href="#">Reviews</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Shop</h4>
+                     <ul>
+                        <li><a href="#">Rings</a></li>
+                        <li><a href="#">Earrings</a></li>
+                        <li><a href="#">Bracelets</a></li>
+                        <li><a href="#">Necklaces</a></li>
+                        <li><a href="#">New Arrivals</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column newsletter">
+                    <h4>Join the World of Oberon</h4>
+                    <p>Be the first to hear about new collections, exclusive events, and more.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Enter your email">
+                        <button type="submit">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-pinterest-p"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+                <p>&copy; 2024 Oberon Jewels. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
