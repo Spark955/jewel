@@ -1,0 +1,14 @@
+cd ~/Downloads
+wget --mirror \
+     --page-requisites \
+     --adjust-extension \
+     --convert-links \
+     --no-parent \
+     --wait=2 \
+     --random-wait \
+     --user-agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.0 Safari/605.1.15" \
+     --execute robots=off \
+     --no-check-certificate \
+     --reject-regex "logout|admin|checkout" \
+     -e robots=off \
+     https://oberonjewels.com
